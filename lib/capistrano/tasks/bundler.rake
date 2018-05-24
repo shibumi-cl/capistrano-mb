@@ -23,6 +23,8 @@ namespace :mb do
       return unless test "[ -f #{release_path.join(lockfile)} ]"
 
       execute "echo `export`"
+      execute "/home/deployer/.rvm/scripts/rvm"
+      execute "echo `export`"
       execute "whoami"
       ruby_expr = 'puts $<.read[/BUNDLED WITH\n   (\S+)$/, 1]'
       version = capture :ruby, "-e", ruby_expr.shellescape, lockfile
