@@ -22,7 +22,7 @@ namespace :mb do
       lockfile = fetch(:mb_bundler_lockfile, "Gemfile.lock")
       return unless test "[ -f #{release_path.join(lockfile)} ]"
 
-      execute "ruby --version"
+      execute :ruby, "--version"
       ruby_expr = 'puts $<.read[/BUNDLED WITH\n   (\S+)$/, 1]'
       version = capture :ruby, "-e", ruby_expr.shellescape, lockfile
       version.strip!
