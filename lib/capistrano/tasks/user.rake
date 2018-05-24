@@ -1,5 +1,5 @@
 mb_recipe :user do
-  during :provision, %w(add install_public_key)
+  during :provision, %w(add install_public_key add_to_sudoers)
 end
 
 namespace :mb do
@@ -26,6 +26,13 @@ namespace :mb do
           execute :sudo, "chown", "-R", "#{user}:#{user}", "/home/#{user}/.ssh"
           execute :sudo, "chmod", "600", "/home/#{user}/.ssh/authorized_keys"
         end
+      end
+    end
+
+    desc "Add the user to sudoers without password"
+    task :add_to_sudoers do
+      privileged_on roles(:all) do |host, user|
+        execute :sudo "echo '#{user} ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/#{application_basename}"
       end
     end
   end
