@@ -11,6 +11,7 @@ namespace :load do
       nginx
       postgresql
       rbenv
+      rvm
       seed
       ssl
       ufw
