@@ -1,5 +1,5 @@
 mb_recipe :bundler do
-  prior_to "bundler:install", "gem_install"
+  # prior_to "bundler:install", "gem_install"
 end
 
 namespace :mb do
