@@ -47,7 +47,7 @@ namespace :mb do
     desc "Install nodejs from official repo"
     task :install_node do
       node_url = fetch(:mb_node_url)
-      execute :sudo "curl-sL #{node_url} | bash -"
+      execute :sudo, "curl -sL #{node_url} | bash -"
     end
 
     def _already_installed?(pkg)
