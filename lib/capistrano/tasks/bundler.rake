@@ -22,7 +22,7 @@ namespace :mb do
       lockfile = fetch(:mb_bundler_lockfile, "Gemfile.lock")
       return unless test "[ -f #{release_path.join(lockfile)} ]"
 
-      execute "echo `export`"
+      execute "echo `export a=b`"
       execute "/home/deployer/.rvm/scripts/rvm"
       execute "echo `export`"
       execute "whoami"
