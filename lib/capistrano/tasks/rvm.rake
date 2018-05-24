@@ -25,6 +25,7 @@ namespace :mb do
         with :path => "$HOME/.rvm/bin:$HOME/.rvm/shims:$PATH" do
           ruby_version = fetch(:mb_rvm_ruby_version)
           execute :rvm, "install #{ruby_version}"
+          execute :rvm, "alias create default #{ruby_version}"
         end
       end
     end
