@@ -24,7 +24,7 @@ namespace :mb do
       on release_roles(:all) do
         with :path => "$HOME/.rvm/bin:$HOME/.rvm/shims:$PATH" do
           ruby_version = fetch(:mb_rvm_ruby_version)
-          execute :rvm, "install #{ruby_version}"
+          execute :rvm, "install #{ruby_version} --create"
           execute :rvm, "alias create default #{ruby_version}"
         end
       end
