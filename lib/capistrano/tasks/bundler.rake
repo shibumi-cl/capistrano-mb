@@ -12,7 +12,7 @@ namespace :mb do
       on fetch(:bundle_servers) do
         within release_path do
           if (bundled_with = capture_bundled_with)
-            execute "#{install_command} -v #{bundled_with}"
+            execute "#{install_command}", "-v", "#{bundled_with}"
           end
         end
       end
