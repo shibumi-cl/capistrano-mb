@@ -19,6 +19,14 @@ namespace :mb do
       # invoke "mb:rvm:compile_ruby"
     end
 
+    desc "Install ruby according to .ruby-version"
+    task install_ruby: do
+      on release_roles(:all) do
+        ruby_version = fetch(:mb_rvm_ruby_version)
+        execute "rvm install #{ruby_version}"
+      end
+    end
+
     task :write_vars do
       # on release_roles(:all) do
       #   execute :mkdir, "-p ~/.rvm"
