@@ -82,6 +82,8 @@ namespace :load do
       }
     }
 
+    set :mb_rvm_ruby_version, -> { IO.read(".ruby-version").strip }
+
     set :mb_sidekiq_concurrency, 25
     set :mb_sidekiq_role, :sidekiq
 
