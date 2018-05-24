@@ -4,7 +4,7 @@ end
 
 namespace :mb do
   namespace :rbenv do
-    desc "Install rbenv and compile ruby"
+    desc "Install rbenv and compile ruby..."
     task :install do
       invoke "mb:rbenv:run_installer"
       invoke "mb:rbenv:add_plugins"
