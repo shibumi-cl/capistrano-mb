@@ -85,6 +85,8 @@ namespace :load do
     set :mb_sidekiq_concurrency, 25
     set :mb_sidekiq_role, :sidekiq
 
+    set :mb_delayed_job_concurrency, 3
+
     ask :mb_ssl_csr_country, "US"
     ask :mb_ssl_csr_state, "California"
     ask :mb_ssl_csr_city, "San Francisco"

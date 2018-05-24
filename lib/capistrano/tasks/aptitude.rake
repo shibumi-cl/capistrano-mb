@@ -50,9 +50,9 @@ namespace :mb do
       privileged_on roles(:all) do |host|
         execute :sudo, "curl -sL #{node_url} | bash -"
         execute :sudo, "sudo apt-get install -y nodejs"
-        execute :sudo, "curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -"
-        execute :sudo, "echo 'deb https://dl.yarnpkg.com/debian/ stable main' | sudo tee /etc/apt/sources.list.d/yarn.list"
-        execute :sudo, "sudo apt-get update && sudo apt-get install yarn"
+        execute :sudo, "curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -"
+        execute :sudo, "echo 'deb https://dl.yarnpkg.com/debian/ stable main' | tee /etc/apt/sources.list.d/yarn.list"
+        execute :sudo, "apt-get update && apt-get install yarn"
       end
     end
 

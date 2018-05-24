@@ -1,0 +1,24 @@
+[Unit]
+Description=delayed jobs worker for <%= fetch(:application) %>
+After=syslog.target network.target
+
+[Service]
+Environment=RAILS_ENV=<%= fetch(:rails_env) %>
+ExecStart=/bin/bash -lc 'exec bin/delayed_job start -n <%= fetch(:mb_delayed_job_concurrency) -m %>'
+ExecStart=/bin/bash -lc 'exec bin/delayed_job stop -n <%= fetch(:mb_delayed_job_concurrency) -m %>'
+<!-- PIDFile=<%= current_path %>/tmp/pids/sidekiq.pid -->
+Restart=on-failure
+RestartSec=1
+StandardError=syslog
+StandardInput=null
+StandardOutput=syslog
+SyslogIdentifier=<%= application_basename %>-delayed_job
+TimeoutStopSec=5
+User=deployer
+WorkingDirectory=<%= current_path %>
+
+[Install]
+WantedBy=multi-user.target
+
+<!-- ExecStart=/usr/share/aeolus-conductor/script/delayed_job start -n 2 --pid-dir=/var/run/aeolus-conductor
+ExecStop=/usr/share/aeolus-conductor/script/delayed_job stop --pid-dir=/var/run/aeolus-conductor -->
