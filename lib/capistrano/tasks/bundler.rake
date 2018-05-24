@@ -1,5 +1,5 @@
 mb_recipe :bundler do
-  # prior_to "bundler:install", "gem_install"
+  prior_to "bundler:install", "gem_install"
 end
 
 namespace :mb do
@@ -22,6 +22,8 @@ namespace :mb do
       lockfile = fetch(:mb_bundler_lockfile, "Gemfile.lock")
       return unless test "[ -f #{release_path.join(lockfile)} ]"
 
+      execute "export"
+      execute "whoami"
       ruby_expr = 'puts $<.read[/BUNDLED WITH\n   (\S+)$/, 1]'
       version = capture :ruby, "-e", ruby_expr.shellescape, lockfile
       version.strip!
