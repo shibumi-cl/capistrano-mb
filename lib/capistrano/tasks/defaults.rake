@@ -47,6 +47,9 @@ namespace :load do
     set :mb_bundler_lockfile, "Gemfile.lock"
     set :mb_bundler_gem_install_command,
         "gem install bundler --conservative --no-document"
+    set :mb_bundler_gem_install_command_params,
+        "install bundler --conservative --no-document"
+
 
     set :mb_dotenv_keys, %w(rails_secret_key_base postmark_api_key)
     set :mb_dotenv_filename, -> { ".env.#{fetch(:rails_env)}" }
