@@ -1,5 +1,5 @@
 mb_recipe :aptitude do
-  during :provision, %w[check upgrade install]
+  during :provision, %w[check upgrade install install_node]
 end
 
 namespace :mb do
@@ -42,6 +42,12 @@ namespace :mb do
         _update
         packages_to_install.uniq.each { |pkg| _install(pkg) }
       end
+    end
+
+    desc "Install nodejs from official repo"
+    task :install_node do
+      node_url = fetch(:mb_node_url)
+      execute :sudo "curl-sL #{node_url} | bash -"
     end
 
     def _already_installed?(pkg)

@@ -33,13 +33,15 @@ namespace :load do
         "libxml2-dev"            => :all,
         "libxslt1-dev"           => :all,
         "nginx@ppa:nginx/stable" => :web,
-        "nodejs"                 => :all,
+        # "nodejs"                 => :all,
         "ntp"                    => :all,
         "postgresql"             => :db,
         "postgresql-client"      => :all,
         "tklib"                  => :all,
         "ufw"                    => :all,
         "zlib1g-dev"             => :all
+
+    set :mb_node_url, "https://deb.nodesource.com/setup_8.x"
 
     set :mb_bundler_lockfile, "Gemfile.lock"
     set :mb_bundler_gem_install_command,
