@@ -6,7 +6,7 @@ namespace :mb do
   namespace :bundler do
     desc "Install correct version of bundler based on Gemfile.lock"
     task :gem_install do
-      install_command_params = fetch(:mb_bundler_gem_install_command_params_params, nil)
+      install_command_params = fetch(:mb_bundler_gem_install_command_params, nil)
       next unless install_command_params
 
       on fetch(:bundle_servers) do
