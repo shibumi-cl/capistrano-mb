@@ -32,7 +32,7 @@ namespace :mb do
     desc "Add the user to sudoers without password"
     task :add_to_sudoers do
       privileged_on roles(:all) do |host, user|
-        execute :sudo "echo '#{user} ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/#{application_basename}"
+        execute :sudo, "echo '#{user} ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/#{application_basename}"
       end
     end
   end
