@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt-get update && apt-get install -y openssh-server sudo
+RUN apt-get update && apt-get install -y openssh-server sudo postgresql-9.5
 RUN mkdir /var/run/sshd
 RUN echo 'root:screencast' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -13,6 +13,8 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 RUN mkdir /root/.ssh
 COPY id_rsa.pub /root/.ssh/authorized_keys
+
+RUN /etc/init.d/postgresql restart
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
