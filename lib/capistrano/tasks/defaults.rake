@@ -50,7 +50,6 @@ namespace :load do
     set :mb_bundler_gem_install_command_params,
         "install bundler --conservative --no-document"
 
-
     set :mb_dotenv_keys, %w(rails_secret_key_base postmark_api_key)
     set :mb_dotenv_filename, -> { ".env.#{fetch(:rails_env)}" }
 
@@ -79,6 +78,7 @@ namespace :load do
     }
 
     set :mb_rbenv_ruby_version, -> { IO.read(".ruby-version").strip }
+    set :mb_ruby_version, -> { IO.read(".ruby-version").strip }
     set :mb_rbenv_vars, -> {
       {
         "RAILS_ENV" => fetch(:rails_env),
@@ -87,6 +87,8 @@ namespace :load do
     }
 
     set :mb_rvm_ruby_version, -> { IO.read(".ruby-version").strip }
+
+    map_prefix = "~/.rvm/bin/rvm #{fetch(:mb_rvm_ruby_version)}@#{fetch(:application)} do "
 
     set :mb_sidekiq_concurrency, 25
     set :mb_sidekiq_role, :sidekiq
@@ -141,5 +143,8 @@ namespace :load do
     set :ssh_options, :compression => true, :keepalive => true
 
     SSHKit.config.command_map[:rake] = "bundle exec rake"
+    SSHKit.config.command_map[:ruby] = "#{map_prefix} ruby"
+    SSHKit.config.command_map[:gem]  = "#{map_prefix} gem"
+
   end
 end

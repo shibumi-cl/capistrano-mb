@@ -1,5 +1,5 @@
 mb_recipe :rvm do
-  during :provision, %w(install write_vars)
+  during :provision, %w(install install_ruby write_vars)
 end
 
 namespace :mb do
