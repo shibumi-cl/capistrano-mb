@@ -88,7 +88,7 @@ namespace :load do
 
     set :mb_rvm_ruby_version, -> { IO.read(".ruby-version").strip }
 
-    map_prefix = "~/.rvm/bin/rvm #{fetch(:mb_rvm_ruby_version)}@#{fetch(:application)} do "
+    map_prefix = "~/.rvm/bin/rvm --create #{fetch(:mb_rvm_ruby_version)}@app do "
 
     set :mb_sidekiq_concurrency, 25
     set :mb_sidekiq_role, :sidekiq
@@ -145,6 +145,7 @@ namespace :load do
     SSHKit.config.command_map[:rake] = "bundle exec rake"
     SSHKit.config.command_map[:ruby] = "#{map_prefix} ruby"
     SSHKit.config.command_map[:gem]  = "#{map_prefix} gem"
+    SSHKit.config.command_map[:rvm]  = "#{map_prefix} rvm"
 
   end
 end

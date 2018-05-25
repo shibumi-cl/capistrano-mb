@@ -23,6 +23,7 @@ namespace :mb do
       return unless test "[ -f #{release_path.join(lockfile)} ]"
 
       execute :ruby, "--version"
+      execute :rvm, "gemset list"
       ruby_expr = 'puts $<.read[/BUNDLED WITH\n   (\S+)$/, 1]'
       version = capture :ruby, "-e", ruby_expr.shellescape, lockfile
       version.strip!
