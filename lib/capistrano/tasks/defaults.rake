@@ -143,9 +143,9 @@ namespace :load do
     set :ssh_options, :compression => true, :keepalive => true
 
     SSHKit.config.command_map[:rake] = "bundle exec rake"
-    SSHKit.config.command_map[:ruby] = "#{map_prefix} ruby"
-    SSHKit.config.command_map[:gem]  = "#{map_prefix} gem"
-    SSHKit.config.command_map[:rvm]  = "#{map_prefix} rvm"
+    # SSHKit.config.command_map[:ruby] = "#{map_prefix} ruby"
+    # SSHKit.config.command_map[:rvm_gem]  = "#{map_prefix} gem"
+    # SSHKit.config.command_map[:rvm]  = "#{map_prefix} rvm"
 
   end
 end
