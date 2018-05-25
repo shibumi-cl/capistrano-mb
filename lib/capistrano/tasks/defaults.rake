@@ -11,7 +11,6 @@ namespace :load do
       nginx
       postgresql
       rbenv
-      rvm
       seed
       ssl
       ufw
@@ -19,7 +18,7 @@ namespace :load do
       user
       version
     )
-
+    # rvm
     set :mb_privileged_user, "root"
 
     set :mb_aptitude_packages,
