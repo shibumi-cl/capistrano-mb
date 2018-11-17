@@ -13,12 +13,13 @@ namespace :load do
       rbenv
       seed
       ssl
-      ufw
+
       unicorn
       user
       version
     )
     # rvm
+    # ufw
     set :mb_privileged_user, "root"
 
     set :mb_aptitude_packages,

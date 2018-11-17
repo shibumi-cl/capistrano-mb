@@ -13,11 +13,12 @@ namespace :mb do
     desc "Create user if it doesn't already exist"
     task :create_user do
       privileged_on primary(:db) do
-        user = fetch(:mb_postgresql_user)
+        user = fetch(:mb_postgresql_user)#.downcase
 
-        unless test("sudo -u postgres psql -c '\\du' | grep -q #{user}")
+        unless test("sudo -u postgres psql -c '\\du' | grep -q #{user.downcase}")
           passwd = fetch(:mb_postgresql_password)
           md5 = Digest::MD5.hexdigest(passwd + user)
+          execute "sudo service postgresql restart"
           execute "sudo -u postgres psql -c " +
                   %Q["CREATE USER #{user} PASSWORD 'md5#{md5}';"]
         end
@@ -27,7 +28,7 @@ namespace :mb do
     desc "Create database if it doesn't already exist"
     task :create_database do
       privileged_on primary(:db) do
-        user = fetch(:mb_postgresql_user)
+        user = fetch(:mb_postgresql_user).downcase
         db = fetch(:mb_postgresql_database)
 
         unless test("sudo -u postgres psql -l | grep -w -q #{db}")
