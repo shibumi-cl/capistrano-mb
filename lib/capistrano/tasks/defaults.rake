@@ -40,7 +40,8 @@ namespace :load do
         "postgresql-client"      => :all,
         "tklib"                  => :all,
         "ufw"                    => :all,
-        "zlib1g-dev"             => :all
+        "zlib1g-dev"             => :all,
+        "vim"                    => :all
 
     set :mb_node_url, "https://deb.nodesource.com/setup_8.x"
 

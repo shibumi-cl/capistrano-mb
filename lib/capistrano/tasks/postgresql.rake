@@ -14,8 +14,7 @@ namespace :mb do
     task :create_user do
       privileged_on primary(:db) do
         user = fetch(:mb_postgresql_user)
-
-        unless test("sudo -u postgres psql -c '\\du' | grep -q #{user}")
+        unless test("sudo -u postgres psql -c '\\du' | grep -q ' #{user} '")
           passwd = fetch(:mb_postgresql_password)
           md5 = Digest::MD5.hexdigest(passwd + user)
           execute "sudo service postgresql restart"
