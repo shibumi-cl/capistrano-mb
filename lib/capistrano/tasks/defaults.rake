@@ -117,7 +117,7 @@ namespace :load do
     set :bundle_binstubs, false
     set :bundle_flags, "--deployment --retry=3 --quiet"
     set :bundle_path, -> { shared_path.join("bundle") }
-    set :deploy_to, -> { "/home/deployer/apps/#{fetch(:application)}" }
+    set :deploy_to, -> { "/home/ubuntu/apps/#{fetch(:application)}" }
     set :keep_releases, 10
     set :linked_dirs, -> {
         ["public/#{fetch(:assets_prefix, 'assets')}"] +
