@@ -8,7 +8,7 @@ namespace :mb do
     task :check do
       privileged_on roles(:all) do
         version = capture(:sudo, "lsb_release -a")[/^Release:\s+(\S+)$/, 1]
-        next if version == "16.04"
+        next #if version == "16.04"
 
         raise "Ubuntu version #{version || "unknown"} is not supported by "\
               "capistrano-mb. Only Ubuntu 16.04 is supported. Downgrade "\
